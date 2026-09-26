@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# Trained checkpoints and run logs stay on your computer.
+checkpoints/
+runs/
+*.pt
+*.log
+
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

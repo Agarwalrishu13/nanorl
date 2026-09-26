@@ -1,0 +1,5 @@
+# nanorl needs exactly one thing: PyTorch.
+#
+# For a CPU-only install (plenty for tiny models):
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+torch>=2.0

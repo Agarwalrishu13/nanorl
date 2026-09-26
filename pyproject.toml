@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nanorl"
+version = "0.2.0"
+description = "SFT and DPO alignment trainers for tiny local language models, written from scratch on PyTorch."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Priyanshu Agarwal" }]
+keywords = ["llm", "alignment", "sft", "dpo", "fine-tuning", "tiny-models", "local-first", "pytorch"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = ["torch>=2.0"]
+
+[tool.setuptools]
+packages = ["nanorl"]
