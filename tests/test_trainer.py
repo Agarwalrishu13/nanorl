@@ -147,3 +147,26 @@ class CheckpointTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class EvalTests(unittest.TestCase):
+    """The perplexity script: one honest number for 'how well does it know this'."""
+
+    def test_a_trained_model_beats_chance_on_text_it_saw(self):
+        import math
+        _seed()
+        model = TinyModel()
+        sentence = "the sky is blue today"
+        batch, mask = tokens.pad_batch([sentence], 32)
+        optimizer = torch.optim.Adam(model.parameters(), lr=0.02)
+        for _ in range(60):
+            optimizer.zero_grad()
+            sft_loss(model, batch, mask).backward()
+            optimizer.step()
+        with torch.no_grad():
+            trained = sft_loss(model, batch, mask).item()
+        fresh = TinyModel()
+        with torch.no_grad():
+            chance = sft_loss(fresh, batch, mask).item()
+        self.assertLess(trained, chance)  # it learned something
+        self.assertLess(math.exp(trained), math.exp(chance))
