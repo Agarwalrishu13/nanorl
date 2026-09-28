@@ -27,6 +27,8 @@ def main():
     parser.add_argument("--seq-len", type=int, default=256)
     args = parser.parse_args()
 
+    if not Path(args.model).is_file():
+        raise SystemExit("There is no model at %s." % args.model)
     model = torch.load(args.model, weights_only=False, map_location="cpu")
     model.eval()
     text = Path(args.text).read_text(encoding="utf-8")
